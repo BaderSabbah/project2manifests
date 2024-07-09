@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-webapp
+  namespace: app
+  labels:
+    name: webapp
+    app: employees
+  annotations:
+    custom.dbport: "3306"
+spec:
+  containers:
+  - name: colorapp
+    image: 579349033092.dkr.ecr.us-east-1.amazonaws.com/webapp:latest
+    ports:
+    - containerPort: 8080
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "password"
+    - name: DBHOST
+      value: "10.244.0.7"
+    - name: DBPORT
+      value: "3306"
+    - name: DBPWD
+      value: "password"
